@@ -1,12 +1,9 @@
-FROM lsiobase/alpine:3.8
+FROM lsiobase/alpine:latest
 
-# set version label
-ARG BUILD_DATE
-ARG VERSION
-LABEL build_version="blog.auska.win version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="Auska"
+ENV TZ="Asia/Taipei" PORT="5299" VER="3.6.4" BAIDUPCS_GO_CONFIG_DIR="/config"
 
-ENV TZ=Asia/Shanghai PORT=1999 VER=3.6.4
+LABEL baidupcs-go.version="${VER}"
+LABEL maintainer="melsonlai"
 
 RUN \
 	echo "**** install packages ****" \
@@ -24,5 +21,5 @@ RUN \
 COPY root/ /
 
 # ports and volumes
-EXPOSE 1999
-VOLUME /root/Downloads /defaults
+EXPOSE 5299
+VOLUME /downloads /config

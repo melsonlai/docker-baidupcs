@@ -1,18 +1,22 @@
-# My Blog
-http://blog.auska.win
+# docker-baidupcs
 
 ## Usage
 
+1. 
 ```
-docker create --name=baidupcs \
--v <path to downloads>:/root/Downloads \
--v <path to config>:/defaults \
--e PGID=<gid> -e PUID=<uid> \
--e TZ=<timezone> \
--e PORT=1999 \  #(port should be greater than 1024)
--p 1999:1999 \  
-auska/docker-baidupcs
+docker run \
+    -d \
+    --restart="unless-stopped" \
+    --name="baidupcs" \
+    -v "<path to downloads>:/downloads" \
+    -v "<path to config>:/config" \
+    -e PGID=<gid> -e PUID=<uid> \
+    -e TZ=<timezone> \
+    -e PORT=5299 \ # (port should be greater than 1024)
+    -p 5299:5299 \
+    melsonlai/docker-baidupcs:latest
 ```
+2. Config the download path with your browser to `/downloads'. 
 
 
 ### User / Group Identifiers
@@ -22,20 +26,17 @@ Sometimes when using data volumes (`-v` flags) permissions issues can arise betw
 In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
 
 ```
-  $ id <dockeruser>
-    uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
+$ id <dockeruser>
+  uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
 ## Versions
 
-+ **3.5.7:** Rebase to alpine linux 3.8.
-+ **3.5.8:** Update 3.5.8.
-+ **3.5.9:** Update 3.5.9.
-+ **3.6.1:** Update 3.6.1.
-+ **3.6.2:** Update 3.6.2.
 + **3.6.4:** Update 3.6.4.
++ **20190315**: Fork from Auska/docker-baidupcs. 
 
-## Refferences
+## References
+
+https://www.github.com/Auska/docker-baidupcs
 https://github.com/liuzhuoling2011/baidupcs-web
-
 https://github.com/iikira/BaiduPCS-Go
