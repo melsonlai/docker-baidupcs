@@ -1,6 +1,6 @@
 FROM lsiobase/alpine:latest
 
-ENV TZ="Asia/Taipei" PORT="5299" VER="3.6.4" BAIDUPCS_GO_CONFIG_DIR="/config"
+ENV TZ="Asia/Taipei" PORT="5299" VER="3.6.5" BAIDUPCS_GO_CONFIG_DIR="/config"
 
 LABEL baidupcs-go.version="${VER}"
 LABEL maintainer="melsonlai"
