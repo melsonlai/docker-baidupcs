@@ -34,7 +34,8 @@ $ id <dockeruser>
 
 + **3.6.4:** Update 3.6.4.
 + **20190315**: Fork from Auska/docker-baidupcs. 
-+ **20190323**: Update 3.6.6. 
++ **20190323**: Update BaiduPCS to v3.6.5. 
++ **20190403**: Update BaiduPCS to v3.6.6. 
 
 ## References
 
