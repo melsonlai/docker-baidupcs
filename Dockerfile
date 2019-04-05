@@ -1,11 +1,11 @@
 FROM lsiobase/alpine:latest
 
-ENV TZ="Asia/Taipei" PORT="5299" BAIDUPCS_GO_CONFIG_DIR="/config"
-
 LABEL maintainer="melsonlai"
+ENV TZ="Asia/Taipei" PORT="5299" BAIDUPCS_GO_CONFIG_DIR="/config" MY_DOCKER_USERNAME="" MY_DOCKER_PASSWORD=""
 
 RUN \
-  export MY_BAIDUPCS_VER="$(wget -q -O- https://api.github.com/repos/liuzhuoling2011/baidupcs-web/releases/latest | grep tag_name | cut -d : -f 2 | tr -d '\", ')" \
+  [ -z "${MY_DOCKER_USERNAME}" -a -z "${MY_DOCKER_PASSWORD}" ] \
+  && export MY_BAIDUPCS_VER="$(wget -q -O- https://api.github.com/repos/liuzhuoling2011/baidupcs-web/releases/latest | grep tag_name | cut -d : -f 2 | tr -d '\", ')" \
   && echo "Installing BaiduPCS ${MY_BAIDUPCS_VER}... " \
   && apk add --no-cache unzip \
   && cd /tmp \
