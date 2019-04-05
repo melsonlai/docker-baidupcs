@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DOCKER_CLI_EXPERIMENTAL="enabled"
+DIND="docker run --rm docker"
+
+${DIND} sh -c "\
+  export DOCKER_CLI_EXPERIMENTAL='${DOCKER_CLI_EXPERIMENTAL}' && \
+  docker login -u '${MY_DOCKER_USERNAME}' -p '${MY_DOCKER_PASSWORD}' && \
+  docker manifest create melsonlai/docker-baidupcs:latest \
+    melsonlai/docker-baidupcs:amd64 && \
+  docker manifest push melsonlai/docker-baidupcs:latest \
+"
