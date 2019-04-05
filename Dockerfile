@@ -1,21 +1,21 @@
 FROM lsiobase/alpine:latest
 
-ENV TZ="Asia/Taipei" PORT="5299" VER="3.6.6" BAIDUPCS_GO_CONFIG_DIR="/config"
+ENV TZ="Asia/Taipei" PORT="5299" BAIDUPCS_GO_CONFIG_DIR="/config"
 
-LABEL baidupcs-go.version="${VER}"
 LABEL maintainer="melsonlai"
 
 RUN \
-	echo "**** install packages ****" \
-	&& apk add --no-cache curl unzip \
-	&& cd /tmp \
-	&& curl -fSL https://github.com/liuzhuoling2011/baidupcs-web/releases/download/${VER}/BaiduPCS-Go-${VER}-linux-amd64.zip -o baidupcs.zip \
-	&& mkdir -p /defaults \
-	&& unzip baidupcs.zip -d /defaults \
-	&& mv /defaults/BaiduPCS-Go-${VER}-linux-amd64/BaiduPCS-Go /defaults/BaiduPCS-Go \
-	&& rm -rf /defaults/BaiduPCS-Go-${VER}-linux-amd64 \
-	&& apk del curl \
-	&& rm -rf /tmp
+  export MY_BAIDUPCS_VER="$(wget -q -O- https://api.github.com/repos/liuzhuoling2011/baidupcs-web/releases/latest | grep tag_name | cut -d : -f 2 | tr -d '\", ')" \
+  && echo "Installing BaiduPCS ${MY_BAIDUPCS_VER}... " \
+  && apk add --no-cache unzip \
+  && cd /tmp \
+  && wget -q -O baidupcs.zip https://github.com/liuzhuoling2011/baidupcs-web/releases/download/${MY_BAIDUPCS_VER}/BaiduPCS-Go-${MY_BAIDUPCS_VER}-linux-amd64.zip \
+  && mkdir -p /defaults \
+  && unzip baidupcs.zip -d /defaults \
+  && mv /defaults/BaiduPCS-Go-${MY_BAIDUPCS_VER}-linux-amd64/BaiduPCS-Go /defaults/BaiduPCS-Go \
+  && rm -rf /defaults/BaiduPCS-Go-${MY_BAIDUPCS_VER}-linux-amd64 \
+  && rm -rf /tmp \
+  && echo "Done"
 
 # copy local files
 COPY root/ /
