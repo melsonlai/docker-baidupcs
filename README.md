@@ -30,15 +30,21 @@ $ id <dockeruser>
   uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
+## Tags
+
++ latest: Manifest list with `amd64`
++ amd64: amd64 arch based on `lsiobase/alpine:latest`
+
 ## Versions
 
-+ **3.6.4:** Update 3.6.4.
-+ **20190315**: Fork from Auska/docker-baidupcs. 
-+ **20190323**: Update BaiduPCS to v3.6.5. 
-+ **20190403**: Update BaiduPCS to v3.6.6. 
++ **3.6.4:** Update 3.6.4
++ **20190315**: Fork from Auska/docker-baidupcs
++ **20190323**: Update BaiduPCS to v3.6.5
++ **20190403**: Update BaiduPCS to v3.6.6
++ **20190405**: Add script to auto download the latest `liuzhuoling2011/baidupcs-web` release
 
 ## References
 
-https://www.github.com/Auska/docker-baidupcs
-https://github.com/liuzhuoling2011/baidupcs-web
-https://github.com/iikira/BaiduPCS-Go
++ https://www.github.com/Auska/docker-baidupcs
++ https://github.com/liuzhuoling2011/baidupcs-web
++ https://github.com/iikira/BaiduPCS-Go
