@@ -32,7 +32,6 @@ $ id <dockeruser>
 
 ## Tags
 
-+ latest: Manifest list with `amd64`
 + amd64: amd64 arch based on `lsiobase/alpine:latest`
 
 ## Versions
